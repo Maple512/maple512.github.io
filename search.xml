@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>模块化</title>
+      <link href="/2021/10/20/modularity/"/>
+      <url>/2021/10/20/modularity/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>通过使用模块系统，统一服务注册的动作。通过扫描程序集的方式，来达到自动发现并注册服务的目的</p></blockquote><h2 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h2><blockquote><p>将服务注册到容器中，将服务的创建动作交给容器，从而实现控制反转</p></blockquote><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul><li><code>Singleton</code>：单例模式。每次容器中获取到的实例都是相同的</li><li><code>Scoped</code>：范围模式。每次同一个容器中获取到的实例是相同的</li><li><code>Transient</code>：瞬时模式。每次从容器中获取的都是新的实例</li></ul><h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>继承以下接口</p><ul><li><code>ISingletonService</code></li><li><code>IScopedService</code></li><li><code>ITransientService</code></li></ul><blockquote><p>提示：</p></blockquote><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p>在服务上声明<code>ServiceDescribe</code>特性</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 注册为单例</span><span class="token punctuation">[</span><span class="token function">ServiceDescribe</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">lifetime</span><span class="token punctuation">:</span> ServiceLifetime<span class="token punctuation">.</span>Singleton<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YourService</span><span class="token punctuation">{</span>  <span class="token comment">// some code</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><code>ServiceDescribe</code>具体配置</p><ul><li><code>Lifetime</code>：服务的生命周期</li><li><code>TryRegister</code>：尝试注册服务，如果已经注册过相同的服务，则放弃</li><li><code>IsDisabled</code>：禁止注册</li><li><code>ReplaceFirst</code>：替换从容器中查到的第一个相同类型的服务</li><li><code>IncludeSelf</code>：注册时包括服务实现类，而不只是注册接口。注册服务时，如果继承了接口，则不会注册服务实现</li><li><code>IncludeOnlySelf</code>：注册时，只注册服务实现类，而忽略继承的接口</li></ul><h2 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h2><blockquote><p>通常每个<code>csproj</code>都相当于一个模块，在项目里创建一个以<code>Module</code>为后缀的类来表示该项目是一个模块</p></blockquote><h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><blockquote><p>通过声明一个特性<code>ModuleDescribe</code>来达到使用模块系统的目的</p></blockquote><p>该特性有两种使用方式</p><ul><li>通过在类上声明，通常建议类使用<code>Module</code>作为后缀</li></ul><pre class="line-numbers language-csharp" data-language="csharp"><div class="caption"><span>YourModule.cs</span></div><code class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">ModuleDescribe</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DependedModule</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YourModule</span><span class="token punctuation">{</span>  <span class="token comment">// other code</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>直接在项目中的某个类中配置程序集特性</li></ul><pre class="line-numbers language-csharp" data-language="csharp"><div class="caption"><span>SomeClass.cs</span></div><code class="language-csharp"><span class="token punctuation">[</span>assembly<span class="token punctuation">:</span> <span class="token function">ModuleDescribe</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DependedModule</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> framework </tag>
+            
+            <tag> modularity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>框架</title>
+      <link href="/2021/10/20/framework/"/>
+      <url>/2021/10/20/framework/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> framework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
