@@ -856,10 +856,10 @@ hexo-wordcount@^6.0.1:
   resolved "https://registry.npm.taobao.org/hexo-wordcount/download/hexo-wordcount-6.0.1.tgz#5a60efc9d3c8e421956f2fd6683ca94a8a795264"
   integrity sha1-WmDvydPI5CGVby/WaDypSop5UmQ=
 
-hexo@^5.0.0:
+hexo@^5.4.0:
   version "5.4.0"
-  resolved "https://registry.npm.taobao.org/hexo/download/hexo-5.4.0.tgz#77d57fa1c29f3ab05964fe4ebd9c44e23df51b37"
-  integrity sha1-d9V/ocKfOrBZZP5OvZxE4j31Gzc=
+  resolved "https://registry.yarnpkg.com/hexo/-/hexo-5.4.0.tgz#77d57fa1c29f3ab05964fe4ebd9c44e23df51b37"
+  integrity sha512-4vMDle5GjpMeOVrx0NKoTZCqrmpJVg3wNiNNUVjcoFfcpYcMzQUCZHBtQqLl7BzjJ8x2gs002VQ5yv0ZKtj8Jg==
   dependencies:
     abbrev "^1.1.1"
     archy "^1.0.0"
